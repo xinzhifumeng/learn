@@ -11,8 +11,8 @@ class Solution:
         
         if not nums or len(nums)<3:return []
          
-        ans=abs(abs(nums[0])+abs(nums[1])+abs(nums[2])-target)
-        res=(abs(nums[0])+abs(nums[1])+abs(nums[2])-target)
+        ans=2**32-1
+        res=2**32-1
         
         i=0
         while i+2<len(nums):
