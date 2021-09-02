@@ -18,15 +18,23 @@ class Solution:
 
         #迭代法
         dummyHead = ListNode(0)
+        #定义一哑节点
         dummyHead.next = head
+        #链接到链表最前面
         temp = dummyHead
+        #定义临时节点放在开头，循环中表示上一个循环末尾的节点，并控制循环进行
+
         while temp.next and temp.next.next:
+            #同时存在两个节点
             node1 = temp.next
             node2 = temp.next.next
-            temp.next = node2
+            #对本次循环中的node1 node2 赋值
+            temp.next = node2 #链接上一个循环结果，第一次链接的哑节点
             node1.next = node2.next
             node2.next = node1
+            #转移链接，实现互换
             temp = node1
+            #交换完后通过temp进位，在下个循环中进行下两位
         return dummyHead.next
 
         '''
@@ -62,9 +70,13 @@ class Solution:
         #递归的方法-来自官方
         #带入1234 理解一下就行了 1-234 第一步后求34返回第一步43后执行完2143
         if not head or not head.next: return head 
+        #末尾是否存在，或只存在1项
         newhead=head.next
+        #第二项提到前面
         head.next=self.swapPairs(newhead.next)
+        #将两项后的项连接到第一项后面，加上迭代运算看一看做已完成的项
         newhead.next=head
+        #将第一项连接到新链表的第二项后
         return newhead
         '''
 # @lc code=end
