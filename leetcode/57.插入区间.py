@@ -1,12 +1,13 @@
 #
-# @lc app=leetcode.cn id=56 lang=python3
+# @lc app=leetcode.cn id=57 lang=python3
 #
-# [56] 合并区间
-#排序+贪心解题
+# [57] 插入区间
+#
 
 # @lc code=start
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        intervals.append(newInterval)
         intervals.sort()
         ret=[]
         start,end=intervals[0]
