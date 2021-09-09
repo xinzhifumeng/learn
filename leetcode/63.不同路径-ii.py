@@ -6,6 +6,43 @@
 #
 
 # @lc code=start
+
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        n=len(obstacleGrid) #n行
+        m=len(obstacleGrid[0]) #m列
+        
+        
+        f =  [ [0] * (m ) for _ in range(n )]
+        if obstacleGrid[0][0]==1:return 0
+        else: f[0][0]=1
+        
+        for i in range(1,n):
+            if obstacleGrid[i][0]==1:f[i][0]=0
+            else:f[i][0]=f[i-1][0]
+        for j in range(1,m):
+            if obstacleGrid[0][j]==1:f[0][j]=0
+            else:f[0][j]=f[0][j-1]
+
+        
+        print(f)
+        for j in range(1, m):
+            for i in range(1, n):
+                '''
+                if i-1==0 and obstacleGrid[i-1][j]==1:
+                    f[i-1][j]=0
+                    
+                if j-1==0 and obstacleGrid[i][j-1]==1:
+                    f[i][j-1]=0
+                '''    
+                
+                if obstacleGrid[i][j]==1 :f[i][j]=0
+                else:f[i][j] = f[i - 1][j] + f[i][j - 1]
+                
+        return f[n - 1][ m- 1]
+
+
+'''
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
          #新建矩阵版
@@ -24,7 +61,7 @@ class Solution:
                         store[m][n] = a+b
         return store[-1][-1]
 
-        
+'''     
        
 
 
