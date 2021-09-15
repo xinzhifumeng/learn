@@ -20,7 +20,7 @@ class Solution:
 
         
         for  k in range(0,n+1):
-            dfs(0,k,[])
+            dfs(0,3,[])
             
         return res
 # @lc code=end
