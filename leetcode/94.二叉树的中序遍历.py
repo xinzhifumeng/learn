@@ -12,6 +12,14 @@
 #（3）每一个非根结点有且只有一个父节点
 
 #（4）除了根结点外，每个子结点可以分为多个不相交的子树。
+'''
+144前序遍历 递归解法
+94 中序遍历 迭代解法
+145后序遍历 
+102层序遍历
+前三个对应头结点位置不同144前序遍历
+
+'''
 
 # @lc code=start
 # Definition for a binary tree node.
@@ -32,6 +40,7 @@ class Solution:
         res.append(root.val)
         res.extend(self.inorderTraversal(root.right))
         return res
+        #改变顺序即可称为不同的遍历方法
         '''
         
         
