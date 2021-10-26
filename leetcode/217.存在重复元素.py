@@ -2,7 +2,7 @@
 # @lc app=leetcode.cn id=217 lang=python3
 #
 # [217] 存在重复元素
-#
+#easy
 '''
 给定一个整数数组，判断是否存在重复元素。
 
