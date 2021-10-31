@@ -27,6 +27,11 @@
 # @lc code=start
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        a = Counter(ransomNote) 
+        #Counter 对对象快速计数
+        b = Counter(magazine)
+        return (a & b) == a #与，取并集
+
 
         
 # @lc code=end
