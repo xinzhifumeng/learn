@@ -32,9 +32,28 @@
 链接：https://leetcode-cn.com/problems/maximum-sum-circular-subarray
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 '''
-
+# 最大和在中间的话同53题，在两边的话，最大和在两边，减去中间最小和就行
 # @lc code=start
 class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
+        dp_max = nums[0]
+        dp_min = nums[0]
+
+        sum=nums[0]
+        result_min = nums[0]
+        result_max = nums[0]
+        i=1
+        while i < len(nums):
+            
+            dp_max = max(0, dp_max) + nums[i]
+            dp_min = min(0, dp_min) + nums[i]
+        
+            result_max = max(dp_max, result_max) 
+            result_min = min(dp_min, result_min)
+            sum += nums[i]
+
+            i += 1
+        if result_max < 0: return result_max
+        return max(result_max, sum - result_min)
 # @lc code=end
 

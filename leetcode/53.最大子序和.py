@@ -64,8 +64,10 @@ class Solution:
         i=1
         while i < len(nums):
             dp[i] = max(nums[i], dp[i-1] + nums[i])
+            print(dp[i])
             result = max(dp[i], result) 
             i += 1
+        
         return result
             
 

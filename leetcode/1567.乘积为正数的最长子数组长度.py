@@ -36,5 +36,49 @@
 # @lc code=start
 class Solution:
     def getMaxLen(self, nums: List[int]) -> int:
+
+        length = len(nums)
+        positive, negative = [0] * length, [0] * length
+        if nums[0] > 0:
+            positive[0] = 1
+        elif nums[0] < 0:#乘积为负的数组长度
+            negative[0] = 1
+        
+        maxLength = positive[0]
+        for i in range(1, length):
+            if nums[i] > 0:
+                positive[i] = positive[i - 1] + 1 #这很好理解 +1 而已
+                negative[i] = (negative[i - 1] + 1 if negative[i - 1] > 0 else 0)
+                #num为正对negative的个数影响就是+1，除非之前没有负数
+                #这里不考虑两个的情况，因为else会避免这种情况
+            elif nums[i] < 0:
+                positive[i] = (negative[i - 1] + 1 if negative[i - 1] > 0 else 0)
+                #小于0需要对negative进行反转并+1
+                # 如果没有的情况下代表这是第一个负数，只会出现在开头和0后面，代表无法反转正整数为个数为0
+                negative[i] = positive[i - 1] + 1 #最长正整数个数+1
+                #很明显小于零的增加量是在相反的基础上计算的，判定条件都是对开头或0之后有效的，
+            else:
+                positive[i] = negative[i] = 0
+            #print(positive,negative)
+            maxLength = max(maxLength, positive[i])
+            #在没有每次取max之前，两个值对应num为负时过于依赖对方的值，有时反转后的值不一定大于原来叠加的值
+            #仔细看该题可以发现n的递增序列是交替出现在两数组中的，n为0分割的子数组长度
+        return maxLength
+
+
+        
+        '''
+        #由于存在复数，需要维护两个数组min and max
+        #最大乘积的解法
+        length = len(nums)
+        dp_max= [nums[0]] + [0] * (length - 1)
+        dp_min= [nums[0]] + [0] * (length - 1)
+        
+        for i in range(1,length):
+            dp_max[i] = max( nums[i], nums[i] * dp_max[i-1], nums[i] * dp_min[i-1])
+            dp_min[i] = min( nums[i], nums[i] * dp_max[i-1], nums[i] * dp_min[i-1])
+        return dp_max[length - 1]
+        '''
+
 # @lc code=end
 
