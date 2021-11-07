@@ -29,10 +29,28 @@
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/coin-change
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-'''
+''' 
+#简单的方法就是用递归的方法
 # @lc code=start
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
+        #if(amount == 0):return 0
+        #这一行可有可无，因为下面两行定义覆盖了amount = 0 的情况
+
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
         
+        for coin in coins:
+            #从最小的硬币开始，组成一个个数的数组，知道达到target
+            #因为要用到前面的结果，所以从硬币值迭代到target
+            for x in range(coin, amount + 1):
+                dp[x] = min(dp[x], dp[x - coin] + 1)
+                # 引入新硬币后进行对比，新硬币能有效降低个数就采用，从左向右迭代
+
+        return dp[amount] if dp[amount] != float('inf') else -1
+
+
+        
+    
 # @lc code=end
 

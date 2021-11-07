@@ -34,5 +34,43 @@
 # @lc code=start
 class Solution:
     def find132pattern(self, nums: List[int]) -> bool:
+        #单调栈
+        N = len(nums)
+        leftMin = [float("inf")] * N
+        for i in range(1, N):
+            leftMin[i] = min(leftMin[i - 1], nums[i - 1])
+            # 遍历一遍，从左到右更新出来132中的1，确保判定时存在1
+        stack = []
+        for j in range(N - 1, -1, -1):# 反向遍历
+            numsk = float("-inf")
+            while stack and stack[-1] < nums[j]: 
+                #保证第一个数不入栈
+                numsk = stack.pop()                
+                # 大于nums[j+]的nums[j] 则执行出栈，对出栈的数进行判定
+                # 此时nums[j] 是作为3存在的 多次排出栈的作为2进行判定
+                # 所有的2都不符合条件刚好被排出栈 ，3入栈
+            if leftMin[j] < numsk:
+                return True
+            stack.append(nums[j])
+        return False
+
+
+
+
+        '''
+        # 暴力解 超时
+        N = len(nums)
+        numsi = nums[0]
+        for j in range(1, N): #num[j]需要大于numi
+            if nums[j] <= numsi:
+                numsi = nums[j]
+            else:
+                for k in range(N - 1, j, -1):
+                    if numsi < nums[k] and nums[k] < nums[j]:
+                        return True
+            
+        return False
+        '''
+
 # @lc code=end
 

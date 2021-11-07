@@ -50,18 +50,31 @@ myQueue.empty(); // return false
 class MyQueue:
 
     def __init__(self):
-
+        self.stack1 = []
+        self.stack2 = []
 
     def push(self, x: int) -> None:
-
+        #将元素x推到队列末尾
+        self.stack1.append(x)
 
     def pop(self) -> int:
-
+        #从队列开头移除并返回元素
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2.pop()
+        #实现先入先出
 
     def peek(self) -> int:
-
+        #返回队列开头的元素
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1]
 
     def empty(self) -> bool:
+        #如果队列为空，返回true
+        return not  self.stack1 and not self.stack2
 
 
 
