@@ -1,7 +1,7 @@
 #
 # @lc app=leetcode.cn id=733 lang=python3
 #
-# [733] 图像渲染
+# [733] 图像渲染-BFS-DFS
 #easy
 '''
 有一幅以二维整数数组表示的图画，每一个整数表示该图画的像素值大小，数值在 0 到 65535 之间。
@@ -32,5 +32,44 @@ sr = 1, sc = 1, newColor = 2
 # @lc code=start
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
+        # DFS
+        n, m = len(image), len(image[0])
+        currColor = image[sr][sc]
+
+        def dfs(x: int, y: int):
+            if image[x][y] == currColor:
+                image[x][y] = newColor
+                for mx, my in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
+                    if 0 <= mx < n and 0 <= my < m and image[mx][my] == currColor:
+                        dfs(mx, my)
+
+        if currColor != newColor:
+            dfs(sr, sc)
+        return image
+        '''
+        BFS
+        currColor = image[sr][sc]
+        if currColor == newColor:
+            return image
+        
+        n, m = len(image), len(image[0])
+        que = collections.deque([(sr, sc)])
+        # 类似列表(list)的容器，实现了在两端快速添加(append)和弹出(pop)
+        image[sr][sc] = newColor
+        while que:
+            x, y = que.popleft()
+            # 移去并且返回一个元素，deque最左侧的那一个。如果没有元素的话，就升起 IndexError 索引错误。
+            for mx, my in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
+                if 0 <= mx < n and 0 <= my < m and image[mx][my] == currColor:
+                    que.append((mx, my))
+                    image[mx][my] = newColor
+        
+        return image
+
+作者：LeetCode-Solution
+链接：https://leetcode-cn.com/problems/flood-fill/solution/tu-xiang-xuan-ran-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+        '''
 # @lc code=end
 
