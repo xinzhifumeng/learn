@@ -49,11 +49,9 @@ class NumMatrix:
         _sums = self.sums
 
         return _sums[row2 + 1][col2 + 1] - _sums[row1][col2 + 1] - _sums[row2 + 1][col1] + _sums[row1][col1]
-'''
-作者：LeetCode-Solution
-链接：https://leetcode-cn.com/problems/range-sum-query-2d-immutable/solution/er-wei-qu-yu-he-jian-suo-ju-zhen-bu-ke-b-2z5n/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。'''
+    #求和时，先求出每个位置的和，最后利用这个值求所需位置的值，即分割为4个矩阵，左上=总-右-下+右下
+
+
 
 
 # Your NumMatrix object will be instantiated and called as such:

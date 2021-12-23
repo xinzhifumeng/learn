@@ -41,8 +41,8 @@ class Solution:
             row = matrix.pop()            
             for i in range(len(row)):
                 matrix[-1][i] += min(row[max(0,i-1): min(len(row), i+2)])
-                # 动态转移方程
-                # row[max(0,i-1): min(len(row), i+2)] 边界条件中取min
+                # 动态转移方程,自矩阵最下面开，最上面就是最小路径的值，每一行都是下面的值加自身组成
+                # row[max(0,i-1): min(len(row), i+2)] 边界条件中取左取max，右取min
         return min(matrix[0])
 
 # @lc code=end

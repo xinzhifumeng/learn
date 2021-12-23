@@ -34,8 +34,9 @@ class Solution:
 
         for i in range(2, n + 1):
             num2, num3, num5 = dp[p2] * 2, dp[p3] * 3, dp[p5] * 5
-            # 这个状态转移方程没看明白
+            # 迭代p235，去求下一个丑数，并赋值给dp[i]
             dp[i] = min(num2, num3, num5)
+            #赋值后改变进行下一个的迭代，这里采用了三个if句子
             if dp[i] == num2:
                 p2 += 1
             if dp[i] == num3:
@@ -44,12 +45,11 @@ class Solution:
                 p5 += 1
         
         return dp[n]
+        #官方采用了动归的解法，从结果上来看，没一个数下对应了到该位置丑数的数目
+        #
+        
+        #个人认为可以用if加for循环，这样最简单
 
 
-'''
-作者：LeetCode-Solution
-链接：https://leetcode-cn.com/problems/ugly-number-ii/solution/chou-shu-ii-by-leetcode-solution-uoqd/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。'''
 # @lc code=end
 

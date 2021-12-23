@@ -2,7 +2,7 @@
 # @lc app=leetcode.cn id=136 lang=python3
 #
 # [136] 只出现一次的数字
-#
+#simple
 '''
 给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
 
@@ -19,7 +19,8 @@
 链接：https://leetcode-cn.com/leetbook/read/top-interview-questions-easy/x21ib6/
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-这题说的是只有一个数出现了一次，其他数字都出现了2次，让我们求这个只出现一次的数字。这题使用位运算是最容易解决的，关于位运算有下面几个规律
+这题说的是只有一个数出现了一次，其他数字都出现了2次，让我们求这个只出现一次的数字。
+这题使用位运算是最容易解决的，关于位运算有下面几个规律
 
 1^1=0;
 
@@ -48,11 +49,21 @@ a^b^c=a^c^b；异或运算具有交换律
 # @lc code=start
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        return reduce(lambda x, y: x ^ y, nums)
+        #return reduce(lambda x, y: x ^ y, nums)
         #函数将一个数据集合（链表，元组等）中的所有数据进行下列操作：
         # 用传给 reduce 中的函数 function（有两个参数）先对集合中的第 1、2 个元素进行操作，
         # 得到的结果再与第三个数据用 function 函数运算，最后得到一个结果。
         
+        
+        
+        #方法1，我自己想法是排序后利用二分法
+        #方法2，嵌套一个循环，暴力解决，easy
+        #方法3，利用hash表，这个我不会
+        #方法4，异或，官方解法  a=1^1^5^3^3^4^4  output:a=5
+        ans = nums[0]
+        for i in range(1, len(nums)):
+            ans = ans ^ nums[i]
+        return ans 
 
 
 
