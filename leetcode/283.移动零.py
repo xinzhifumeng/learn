@@ -17,6 +17,7 @@ class Solution:
             if nums[right] != 0:
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
+                #类似快慢指针，快指针指向非零值并转移到慢指针处
             right += 1
 
 # @lc code=end
