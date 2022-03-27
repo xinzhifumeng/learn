@@ -1,5 +1,10 @@
 
-#In[19]
+
+'''
+
+
+
+#In[19]显示计算进程
 import numpy as np
 import math
 import matplotlib.pyplot as plt 
