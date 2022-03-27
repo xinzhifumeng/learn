@@ -19,7 +19,8 @@ class Potential:
 
     ###### 创建谐振子势下的薛定谔方程
     #schro_harmonic = Schrodinger(harmonic_potential)
-
+    #test=Schrodinger(Potential.harmonic_potential)
+    
     ######对谐振子势能可视化
     #schro_harmonic.plot_potential()
 
