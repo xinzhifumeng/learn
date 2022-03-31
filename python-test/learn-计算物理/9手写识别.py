@@ -8,3 +8,8 @@
     简单的编码数字识别，内容基于 keras 例子：https://keras.io/examples/vision/mnist_convnet/
     任务笔记神经网络（卷积神经网络）'''
 #########################################
+import numpy as np
+from tqdm import tqdm
+from tensorflow import keras
+from tensorflow.keras import layers
+import matplotlib.pyplot as p
